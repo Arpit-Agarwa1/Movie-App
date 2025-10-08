@@ -18,33 +18,30 @@ async function fetchapi(url) {
 }
 
 window.addEventListener("load", async () => {
-  let trending = await fetchapi(movieTrendingUrl);
-  let popular = await fetchapi(popolarUrl);
-  let toprated = await fetchapi(topRatedUrl);
-  let response1 = trending.results;
-  let response2 = popular.results;
-  let response3 = toprated.results;
+  let trending = fetchapi(movieTrendingUrl);
+  let popular = fetchapi(popolarUrl);
+  let toprated = fetchapi(topRatedUrl);
 
-  let promises1 = [];
-  let promises2 = [];
-  let promises3 = [];
+  let promises = [trending, popular, toprated];
 
-  for (let i = 0; i < response1.length; i++) {
-    promises1.push(response1[i]);
-    // console.log(promises1);
+  let result = await Promise.all(promises);
+
+  for (let i = 0; i < result.length; i++) {
+    showData(result[i].results);
   }
-  for (let i = 0; i < response2.length; i++) {
-    promises2.push(response2[i]);
-    // console.log(promises2);
-  }
-  for (let i = 0; i < response3.length; i++) {
-    promises3.push(response2[i]);
-    // console.log(promises3);
-  }
-
-  let finaData1 = Promise.all(promises1);
-  let finaData2 = Promise.all(promises2);
-  let finaData3 = Promise.all(promises3);
-
-  console.log(finaData1, finaData2, finaData3);
 });
+
+function showData(data) {
+  for (let i = 0; i < data.length; i++) {
+    // console.log(data[i]);
+
+    let div = document.createElement("div");
+    div.classList.add("box");
+    let image = document.createElement("img");
+    image.src = "https://image.tmdb.org/t/p/original/" + data[i].poster_path;
+    let tittle = document.createElement("p");
+    tittle.innerText = data[i].name;
+    div.append(image, tittle);
+    wrapper.append(div);
+  }
+}
