@@ -3,12 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Website</title>
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
   </head>
   <body>
-    <div class="wrapper"></div>
+    <div id="wrapper">
+      <div class="movie-wrapper">
+        <header>
+          <h2>Trending</h2>
+          <div class="btns">
+            <button id="trendingMoviesDay">Day</button>
+            <button id="trendingMoviesWeek">Week</button>
+          </div>
+        </header>
+        <section class="trending"> </section>
+      </div>
+      <div class="movie-wrapper">
+        <header>
+          <h2>What's Popular</h2>
+          <div class="btns">
+            <button id="popularMovies">Movies</button>
+            <button id="popularTvshows">TV Shows</button>
+          </div>
+        </header>
+        <section class="popular"></section>
+      </div>
+      <div class="movie-wrapper">
+        <header>
+          <h2>Top Rated</h2>
+          <div class="btns">
+            <button id="topRatedMovies">Movies</button>
+            <button id="topRatedTvshows">TV Shows</button>
+          </div>
+        </header>
+        <section class="toprated"></section>
+      </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script
+    >0
   </body>
 </html>
