@@ -12,7 +12,7 @@ export const options = {
 export const config = {
   endpoints: {
     trendingMoviesDay: `${baseURL}/trending/movie/day?language=en-US`,
-    trendingMoviesWeek: `${baseURL}/trending/movie/day?language=en-US`,
+    trendingMoviesWeek: `${baseURL}/trending/movie/week?language=en-US`,
     popularMovies: `${baseURL}/movie/popular?language=en-US&page=1`,
     popularTvshows: `${baseURL}/tv/popular?language=en-US&page=1`,
     topRatedMovies: `${baseURL}/movie/top_rated?language=en-US&page=1`,
