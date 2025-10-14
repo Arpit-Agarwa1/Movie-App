@@ -5,7 +5,10 @@ const trending = document.querySelector(".trending ");
 const popular = document.querySelector(".popular ");
 const toprated = document.querySelector(".toprated ");
 const welcome = document.querySelector(".welcome ");
-const trendingMoviesWeek = document.querySelector("#trendingMoviesWeek");
+const movieWrapper = document.querySelector(".movieSection ");
+const inputForMovies = document.querySelector("#inputForMovies ");
+const submit = document.querySelector(".submit ");
+// const trendingMoviesWeek = document.querySelector("#trendingMoviesWeek");
 
 window.addEventListener("load", async () => {
   const result = await fetchDataFromURL(
@@ -13,6 +16,7 @@ window.addEventListener("load", async () => {
       trendingMoviesDay: config.endpoints.trendingMoviesDay,
       popularMovies: config.endpoints.popularMovies,
       topRatedMovies: config.endpoints.topRatedMovies,
+      upcomingMovies: config.endpoints.upcomingMovies,
     },
     options
   );
@@ -24,7 +28,7 @@ window.addEventListener("load", async () => {
   showData("trendingMoviesDay", trending);
   showData("popularMovies", popular);
   showData("topRatedMovies", toprated);
-  welcomebg(result.trendingMoviesDay);
+  welcomebg(result.upcomingMovies);
 
   //   console.log(config.fetchedData);
 });
@@ -102,7 +106,42 @@ function welcomebg(result) {
 
   let bacdrop_path =
     "https://image.tmdb.org/t/p/original/" + moviebg.backdrop_path;
-  console.log(bacdrop_path);
+  // console.log(bacdrop_path);
 
   welcome.style.backgroundImage = "url(" + bacdrop_path + ")";
+}
+
+submit.addEventListener("click", async () => {
+  let serchInput = inputForMovies.value;
+  let url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+    serchInput
+  )}`;
+
+  let result = await fetchDataFromURL(url, options);
+
+  if (result.results.length == 0) {
+    movieWrapper.innerHTML = "";
+
+    let para = document.createElement("p");
+
+    para.innerText = "Movie not found";
+
+    movieWrapper.append(para);
+  } else {
+    displayResuts(result.results);
+  }
+});
+
+function displayResuts(result) {
+  movieWrapper.innerHTML = "";
+  for (let i = 0; i < result.length; i++) {
+    let div = document.createElement("div");
+    div.classList.add("box");
+    let image = document.createElement("img");
+    image.src = "https://image.tmdb.org/t/p/original/" + result[i].poster_path;
+
+    div.append(image);
+    movieWrapper.append(div);
+    movieWrapper.classList.add("inputResultClass");
+  }
 }

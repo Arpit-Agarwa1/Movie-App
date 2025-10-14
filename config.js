@@ -17,7 +17,8 @@ export const config = {
     popularTvshows: `${baseURL}/tv/popular?language=en-US&page=1`,
     topRatedMovies: `${baseURL}/movie/top_rated?language=en-US&page=1`,
     topRatedTvshows: `${baseURL}/tv/top_rated?language=en-US&page=1`,
-    upcomingMovies: `${baseURL}/movie/upcoming?language=en-US&page=1,`,
+    upcomingMovies: `${baseURL}/movie/upcoming?language=en-US&page=1`,
+    // serchMovies: `${baseURL}search/movie?query=`,
   },
   fetchedData: {
     trendingMoviesDay: null,
@@ -27,5 +28,6 @@ export const config = {
     topRatedMovies: null,
     topRatedTvshows: null,
     upcomingMovies: null,
+    serchMovies: null,
   },
 };

@@ -125,12 +125,37 @@ h2 {
 
 /*  */
 
-.welcome input {
+.welcome input,
+.submit {
   padding: 0.8rem 1.2rem;
-  width: 300px;
-  border-radius: 8px;
+  width: 600px;
+  height: 5rem;
+
+  border-radius: 30px;
   border: none;
   outline: none;
   font-size: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.submit {
+  padding: 0.8rem 1.2rem;
+  width: 100px;
+  height: 5rem;
+
+  cursor: pointer;
+
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.inputResultClass {
+  justify-content: center;
+  display: flex;
+
+  flex-wrap: wrap;
+  align-items: center;
 }
