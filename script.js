@@ -4,6 +4,7 @@ const buttons = document.querySelectorAll(".btns button");
 const trending = document.querySelector(".trending ");
 const popular = document.querySelector(".popular ");
 const toprated = document.querySelector(".toprated ");
+const welcome = document.querySelector(".welcome ");
 const trendingMoviesWeek = document.querySelector("#trendingMoviesWeek");
 
 window.addEventListener("load", async () => {
@@ -23,6 +24,7 @@ window.addEventListener("load", async () => {
   showData("trendingMoviesDay", trending);
   showData("popularMovies", popular);
   showData("topRatedMovies", toprated);
+  welcomebg(result.trendingMoviesDay);
 
   //   console.log(config.fetchedData);
 });
@@ -91,4 +93,16 @@ function showDatabtns(id) {
   } else if (id === "topRatedMovies" || id === "topRatedTvshows") {
     showData(id, toprated);
   }
+}
+
+function welcomebg(result) {
+  let randomIndex = Math.floor(Math.random() * result.length);
+
+  let moviebg = result[randomIndex];
+
+  let bacdrop_path =
+    "https://image.tmdb.org/t/p/original/" + moviebg.backdrop_path;
+  console.log(bacdrop_path);
+
+  welcome.style.backgroundImage = "url(" + bacdrop_path + ")";
 }
