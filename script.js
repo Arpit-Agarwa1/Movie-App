@@ -8,6 +8,7 @@ const welcome = document.querySelector(".welcome ");
 const movieWrapper = document.querySelector(".movieSection ");
 const inputForMovies = document.querySelector("#inputForMovies ");
 const submit = document.querySelector(".submit ");
+
 // const trendingMoviesWeek = document.querySelector("#trendingMoviesWeek");
 
 window.addEventListener("load", async () => {
@@ -76,13 +77,16 @@ async function fetchDataFromURL(url, options) {
 
 function showData(whatToshow, whereTOshow) {
   whereTOshow.innerHTML = "";
+
   for (let i = 0; i < config.fetchedData[whatToshow].length; i++) {
+    let urlData = config.fetchedData[whatToshow][i];
     let div = document.createElement("div");
     div.classList.add("box");
     let image = document.createElement("img");
-    image.src =
-      "https://image.tmdb.org/t/p/original/" +
-      config.fetchedData[whatToshow][i].poster_path;
+    image.src = "https://image.tmdb.org/t/p/original/" + urlData.poster_path;
+    // console.log(config.fetchedData[whatToshow][i]);
+
+    div.addEventListener("click", (e) => showDetails(e, urlData));
 
     div.append(image);
     whereTOshow.append(div);
@@ -139,9 +143,17 @@ function displayResuts(result) {
     div.classList.add("box");
     let image = document.createElement("img");
     image.src = "https://image.tmdb.org/t/p/original/" + result[i].poster_path;
+    // div.addEventListener("click", showDetails);
+
+    div.addEventListener("click", (e) => showDetails(e, result[i]));
 
     div.append(image);
     movieWrapper.append(div);
     movieWrapper.classList.add("inputResultClass");
   }
+}
+
+function showDetails(e, result) {
+  console.log(result.id, e);
+  window.open(`singlemovie.html?id=${result.id}`, "_blank");
 }
